@@ -1,7 +1,7 @@
   # My ASAP Project
 
 ## Idea
-Havent we all seen those funny incorrect spellings of different food items on roadside restaurants.My webpage will showcase some of these funny spellings
+Havent we all seen those funny incorrect spellings of different food items on roadside restaurants and much mire .My webpage will showcase some of these funny spellings
 Render link - https://s58-funnymisspells.onrender.com/ping
 
 ## Features
