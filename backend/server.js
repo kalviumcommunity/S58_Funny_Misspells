@@ -7,6 +7,9 @@ const { connection } = require('./config/db');
 const misspellsData = require('./config/database');
 const { misspellsModel } = require('./model/Misspells');
 const mongoose = require('mongoose');
+const CRUD_routes = require('./Routes/routes');
+
+app.use(express.json())
 
 app.get("/", async (req, res) => {
   let message, statusCode;
@@ -43,6 +46,7 @@ app.post('/postdata', (req, res) => {
       res.status(500).send('Failed to insert data');
     });
 });
+app.use("/routes",CRUD_routes)
 
 app.listen(port, () => {
   console.log(`Server is listening on port ${port}`);
