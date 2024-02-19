@@ -5,9 +5,11 @@ const CRUD_routes=express.Router()
 CRUD_routes.get('/',async(req,res)=>{
     try{
         const misspells=await misspellsModel.find()
+        console.log(misspells)
         res.json(misspells)
     }catch(err){
-        res.send('Error '+err)
+        console.log(err)
+        res.send({'Error':err})
     }
 })
 CRUD_routes.post('/Create',async(req,res)=>{

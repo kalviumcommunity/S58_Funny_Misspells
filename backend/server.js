@@ -1,34 +1,21 @@
+
 const express = require('express');
 const app = express();
 const dotenv = require('dotenv');
 dotenv.config();
 const port = process.env.PUBLIC_PORT || 3000;
-const { connection } = require('./config/db');
+const { connection } = require('./config/db'); // Assuming `connection` is a promise
 const misspellsData = require('./config/database');
 const { misspellsModel } = require('./model/Misspells');
 const mongoose = require('mongoose');
 const CRUD_routes = require('./Routes/routes');
+const cors = require('cors');
 
-app.use(express.json())
+app.use(express.json());
+app.use(cors());
 
 app.get("/", async (req, res) => {
-  let message, statusCode;
-  try {
-    await connection;
-    if (mongoose.connection.readyState === 1) {
-      message = 'Connected to MongoDB';
-      statusCode = 200;
-    } else {
-      message = 'Not connected to MongoDB';
-      statusCode = 500;
-    }
-  } catch (error) {
-    console.log("Error connecting to DB");
-    console.log(error);
-    message = 'Error connecting to MongoDB';
-    statusCode = 500;
-  }
-  res.status(statusCode).send(`<h1>${message}</h1><p>Status Code: ${statusCode}</p>`);
+  res.status(200).send(`<h1>Database Connected Successfully</h1><p>Status Code: 200</p>`);
 });
 
 app.get('/ping', (req, res) => {
@@ -46,8 +33,22 @@ app.post('/postdata', (req, res) => {
       res.status(500).send('Failed to insert data');
     });
 });
-app.use("/routes",CRUD_routes)
 
-app.listen(port, () => {
+app.use("/routes", CRUD_routes);
+
+app.listen(port, async () => {
+  try {
+    console.log(connection)
+    await connection; // Wait for the database connection to be established
+    console.log("Connected to DB");
+    if (mongoose.connection.readyState === 1) {
+      console.log('Connected to MongoDB');
+    } else {
+      console.log('Not connected to MongoDB');
+    }
+  } catch (error) {
+    console.log("Error connecting to DB");
+    console.error(error);
+  }
   console.log(`Server is listening on port ${port}`);
 });
