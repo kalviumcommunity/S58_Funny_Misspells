@@ -1,65 +1,64 @@
 const misspellsData = [
-    {
-      Id: 1,
-      URL: "https://example.com/image1.jpg",
-      caption: "Beautiful landscape",
-      alt: "Landscape image"
-    },
-    {
-      Id: 2,
-      URL: "https://example.com/image2.jpg",
-      caption: "Cute puppy",
-      alt: "Puppy image"
-    },
-    {
-      Id: 3,
-      URL: "https://example.com/image3.jpg",
-      caption: "Delicious pizza",
-      alt: "Pizza image"
-    },
-    {
-      Id: 4,
-      URL: "https://example.com/image4.jpg",
-      caption: "Adorable kitten",
-      alt: "Kitten image"
-    },
-    {
-      Id: 5,
-      URL: "https://example.com/image5.jpg",
-      caption: "Funny meme",
-      alt: "Meme image"
-    },
-    {
-      Id: 6,
-      URL: "https://example.com/image6.jpg",
-      caption: "Sunny beach",
-      alt: "Beach image"
-    },
-    {
-      Id: 7,
-      URL: "https://example.com/image7.jpg",
-      caption: "Tasty ice cream",
-      alt: "Ice cream image"
-    },
-    {
-      Id: 8,
-      URL: "https://example.com/image8.jpg",
-      caption: "Cute kittens",
-      alt: "Kittens image"
-    },
-    {
-      Id: 9,
-      URL: "https://example.com/image9.jpg",
-      caption: "Beautiful flowers",
-      alt: "Flowers image"
-    },
-    {
-      Id: 10,
-      URL: "https://example.com/image10.jpg",
-      caption: "Funny cat",
-      alt: "Cat image"
-    }
-  ];
-  
-  module.exports = misspellsData;
-  
+  {
+    ID: 1,
+    AltID: "Own_Name",
+    Caption: "Misspelling your own name is criminal 🔪",
+    URL: "https://external-preview.redd.it/36pYGtotDlyS4D32l1IgmlzokizmGNtHEvfr1vUkxfk.png?auto=webp&s=84670ff65fbbb2a128408e462fcf566f9ab449ea"
+  },
+  {
+    ID: 2,
+    AltID: "Lunch",
+    Caption: "Astronaut turned Restaurant Owner🧑‍🚀",
+    URL: "https://akm-img-a-in.tosshub.com/indiatoday/images/photogallery/201308/5_083113040823.jpg?VersionId=67.aUzImqahygVuTNaGhWWgo2pGFG2lv&size=686:*"
+  },
+  {
+    ID: 3,
+    AltID: "God",
+    Caption: "God must've lost faith in humanity after reading this",
+    URL: "https://akm-img-a-in.tosshub.com/indiatoday/images/photogallery/201308/6_083113040823.jpg?VersionId=jul0kHhXmNBUpEByFlyEtlgTmbmYWy2u&size=686:*"
+  },
+  {
+    ID: 4,
+    AltID: "Literacy",
+    Caption: "The teachers should be fired for this",
+    URL: "https://i.dailymail.co.uk/i/pix/2017/05/26/14/40D2174700000578-4545278-image-a-101_1495806583965.jpg"
+  },
+  {
+    ID: 5,
+    AltID: "Exist",
+    Caption: "Good Question",
+    URL: "https://www.boredpanda.com/blog/wp-content/uploads/2017/01/funny-spelling-mistakes-errors-fails-200-5874dc47dddd1__605.jpg"
+  },
+  {
+    ID: 6,
+    AltID: "Dognuts",
+    Caption: "Umm, Ill pass on that",
+    URL: "https://static.boredpanda.com/blog/wp-content/uploads/2017/01/funny-spelling-mistakes-errors-fails-138-586e446d1ea2c__605.jpg"
+  },
+  {
+    ID: 7,
+    AltID: "Gru",
+    Caption: "Angry Gru noise`s",
+    URL: "https://img.buzzfeed.com/buzzfeed-static/static/2019-07/11/18/asset/fbecc798792f/sub-buzz-613-1562870463-1.png?downsize=600:*&output-format=auto&output-quality=auto"
+  },
+  {
+    ID: 8,
+    AltID: "Mail",
+    Caption: "CC me too",
+    URL: "https://img.buzzfeed.com/buzzfeed-static/static/2019-07/11/18/asset/a1ae0f8e0582/sub-buzz-4185-1562870549-1.jpg?downsize=600:*&output-format=auto&output-quality=auto"
+  },
+  {
+    ID: 9,
+    AltID: "Cheese",
+    Caption: "🧀",
+    URL: "https://i.chzbgr.com/full/9498333184/h2AF8FCDC/farmer-john-cheese-idk-excuse-farmajohn-parmesan-read-818-pm-yeah-stuff-put-on-pizza-no-delivered"
+  },
+  {
+    ID: 10,
+    AltID: "Grapes",
+    Caption: "Bro has beef with grapes 🥲",
+    URL: "https://i.chzbgr.com/full/9498338048/h053427E9/2d-barcode-hate-grapes-they-discuss-they-be-sayin"
+  }
+];
+
+module.exports = misspellsData;
