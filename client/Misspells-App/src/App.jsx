@@ -8,7 +8,7 @@ const MyComponent = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:1330/routes');
+        const response = await fetch('https://s58-funnymisspells.onrender.com/routes');
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
