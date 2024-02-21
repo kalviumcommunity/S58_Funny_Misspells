@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import Navbar from './navbar'; // Import the Navbar component
 import './App.css';
+import MispellComponent from './components/MispellComponent';
 
 const MyComponent = () => {
   const [data, setData] = useState([]);
@@ -28,9 +29,7 @@ const MyComponent = () => {
       <ul>
         {data?.map((item, index) => (
           <li key={index}>
-            <div>No. {item.ID}</div>
-            <img src={item.URL} alt={item.alt} />
-            <div className="caption">{item.Caption}</div>
+            <MispellComponent item={item}></MispellComponent>
           </li>
         ))}
       </ul>
