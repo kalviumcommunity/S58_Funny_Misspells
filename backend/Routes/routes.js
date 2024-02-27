@@ -13,11 +13,13 @@ CRUD_routes.get('/',async(req,res)=>{
     }
 })
 CRUD_routes.post('/Create',async(req,res)=>{
-    console.log(req)
+    // console.log(req)
     let payload=req.body
+    console.log(payload)
     try { 
         const newMisspells=new misspellsModel(payload)
         await newMisspells.save()
+        // await misspellsModel.create(payload)
         console.log(newMisspells,payload);
         res.send({"message":"Misspells created successfully"})
         
