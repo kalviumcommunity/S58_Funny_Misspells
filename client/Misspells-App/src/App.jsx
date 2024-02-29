@@ -3,47 +3,24 @@ import Navbar from './navbar'; // Import the Navbar component
 import './App.css';
 import MispellComponent from './components/MispellComponent';
 import Form from './components/Form';
-
+import {Routes,Route}  from "react-router-dom";
+import Home from './pages/Home';
+import { Form1 } from './pages/Form1';
+import { Form2 } from './pages/Form2';
+import { Form3 } from './pages/Form3';
 const MyComponent = () => {
-  const [data, setData] = useState([]);
-  const [form,setForm] = useState(false);
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch('https://s58-funnymisspells.onrender.com/routes');
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        const jsonData = await response.json();
-        setData(jsonData);
-      } catch (error) {
-        console.log('Error fetching data:', error);
-      }
-    };
 
-    fetchData();
-  }, []);
-
-  const redirectToForm = () => {
-    setForm(true)
-    // window.location.href = '/components/Form'; // Redirect to the form route when the button is clicked
-  };
-  if (form === true){
-    return <Form></Form>
-  }
 
   return (
-    <div>
+    <>
       <Navbar /> {/* Include the Navbar component */}
-      <button className="submit-btn" onClick={redirectToForm}>Give your own submission</button> {/* Use a button to navigate to the form route */}
-      <ul>
-        {data?.map((item, index) => (
-          <li key={index}>
-            <MispellComponent item={item}></MispellComponent>
-          </li>
-        ))}
-      </ul>
-    </div>
+      <Routes>
+       <Route path="/" element={<Home/>}></Route>
+       <Route path="/Form1" element={<Form1/>}></Route>
+       <Route path="/Form2" element={<Form2/>}></Route>
+       <Route path="/Form3" element={<Form3/>}></Route>
+      </Routes>
+    </>
   );
 };
 

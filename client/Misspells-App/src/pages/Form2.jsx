@@ -1,0 +1,9 @@
+import React from 'react'
+import Form from '../components/Form'
+
+
+export const Form2 = () => {
+  return (
+    <Form method="PUT"/>
+  )
+}
