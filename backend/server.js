@@ -2,6 +2,7 @@
 const express = require('express');
 const app = express();
 const dotenv = require('dotenv');
+const jwt = require('jsonwebtoken');
 dotenv.config();
 const port = process.env.PUBLIC_PORT || 3000;
 const { connection } = require('./config/db'); // Assuming `connection` is a promise
@@ -64,6 +65,25 @@ app.post("/signup",async (req,res)=>{
     res.status(400).json({message:'Sign Up Failed', error: e})    
   }
   })
+
+  // app.post("/login",(req,res)=>{
+  //   const {username,password}=req.body;
+
+  //   let user=userModel.findOne({username})
+
+  //   if(user){
+      
+  //       const payload = { userId: user.id };
+  //       const secretKey = 'AiMeN';
+
+  //       const token = jwt.sign(payload, secretKey);
+
+  //     res.send({"msg":"Logged In Successfully",token:token})
+  //   }else{
+  //     res.send({"msg":"Please Sign-Up First"})
+  //   }
+  
+  // })
 
 
 
