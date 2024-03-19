@@ -9,6 +9,9 @@ import { Form1 } from './pages/Form1';
 import { Form2 } from './pages/Form2';
 import { Form3 } from './pages/Form3';
 import  RegistrationForm  from './pages/RegistrationForm';
+import Login from './pages/Login';
+import Logout from './pages/Logout';
+// import  Signup from './pages/Signup';
 
 const MyComponent = () => {
 
@@ -22,6 +25,8 @@ const MyComponent = () => {
        <Route path="/Form2" element={<Form2/>}></Route>
        <Route path="/Form3" element={<Form3/>}></Route>
        <Route path="/RegistrationForm" element= {<RegistrationForm/>} ></Route>
+       <Route path="/login" element= {<Login/>} ></Route>
+       <Route path="/logout" element= {<Logout/>} ></Route>
       </Routes>
     </>
   );
