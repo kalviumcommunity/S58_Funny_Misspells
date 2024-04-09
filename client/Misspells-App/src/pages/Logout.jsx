@@ -5,7 +5,7 @@ const Logout = () => {
     useEffect(()=>{
         let cookie=document.cookie;
         console.log(cookie)
-        document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        document.cookie = "Token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     })
 
   return (

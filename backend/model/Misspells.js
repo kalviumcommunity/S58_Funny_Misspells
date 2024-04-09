@@ -3,7 +3,7 @@ const misspellsSchema=mongoose.Schema({
     Id:Number,
     URL:String,
     caption:String,
-    alt:String
+    created_by:String
 })
 const misspellsModel= mongoose.model("Misspell",misspellsSchema)
 

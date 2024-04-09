@@ -10,23 +10,27 @@ function Form({method}) {
     event.preventDefault();
 
     let sendData = {
-      "ID": id,
-      "Caption": caption,
-      "URL": imageLink
+      Id: id,
+      caption: caption,
+      URL: imageLink
     };
 
     if (method === "POST") {
-      fetch("https://s58-funnymisspells.onrender.com/routes/Create", {
+    
+    const cookieToken=document.cookie.split(";").find(row =>row.startsWith("Token=")).split("=")[1]
+    console.log(cookieToken)
+      fetch("http://localhost:1330/postdata", {
         method: "POST",
         body: JSON.stringify(sendData),
         headers: {
           'Content-Type': 'application/json',
+          "Authorization":cookieToken
         },
       }).then(response => response.json())
         .then((data) => { console.log(data); })
         .catch((error) => console.log(error));
     } else if (method === "PUT") {
-      fetch(`https://s58-funnymisspells.onrender.com/routes/Update/${mongoId}`, {
+      fetch(`http://localhost:1330/routes/Update/${mongoId}`, {
         method: "PUT",
         body: JSON.stringify(sendData),
         headers: {
@@ -37,7 +41,7 @@ function Form({method}) {
         .catch((error) => console.log(error));
     } else {
       console.log(mongoId,"H")
-      fetch(`https://s58-funnymisspells.onrender.com/routes/Delete/${mongoId}`, {
+      fetch(`http://localhost:1330/routes/Delete/${mongoId}`, {
         method: "DELETE",
         headers: {
           'Content-Type': 'application/json',
