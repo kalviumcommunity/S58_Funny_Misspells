@@ -66,28 +66,47 @@ app.post("/signup",async (req,res)=>{
   }
   })
 
-  // app.post("/login",(req,res)=>{
-  //   const {username,password}=req.body;
+  app.post("/login", async (req,res)=>{
+    const {email,password}=req.body;
+console.log(email,password)
+    let user=await userModel.findOne({email})
 
-  //   let user=userModel.findOne({username})
+    if(user){
+      console.log(user, "user")
+        // const payload = { userId: user.id };
+        const secretKey = 'AiMeN';
+        let token = jwt.sign({
+          userId: user._id
+        }, secretKey);
 
-  //   if(user){
-      
-  //       const payload = { userId: user.id };
-  //       const secretKey = 'AiMeN';
-
-  //       const token = jwt.sign(payload, secretKey);
-
-  //     res.send({"msg":"Logged In Successfully",token:token})
-  //   }else{
-  //     res.send({"msg":"Please Sign-Up First"})
-  //   }
+      res.send({"msg":"Logged In Successfully",token:token})
+    }else{
+      res.send({"msg":"Please Sign-Up First"})
+    }
   
-  // })
+  })
 
 
 
-app.post('/postdata', (req, res) => {
+app.post('/postdata', async (req, res) => {
+  // console.log(req.headers,"token")
+  // console.log(req.headers.authorization, "92")
+  // console.log(req.body,"body")
+// console.log(req.headers, "Header")
+// console.log(req.headers.authorization)
+let token = req.headers.authorization
+let decoded = await jwt.verify(token, 'AiMeN', function(err, decoded) {
+  if (err) {
+    console.log(err)
+  }
+  else{
+    return decoded;
+  }
+});
+if (decoded.userId) {
+  console.log(req.body, 'body')
+  let newObject= {...req.body,created_by:decoded.userId}
+  console.log(newObject, 'newObject')
   misspellsModel.insertMany(misspellsData)
     .then((result) => {
       console.log('Inserted', result.length, 'documents into the collection');
@@ -97,6 +116,14 @@ app.post('/postdata', (req, res) => {
       console.error('Error inserting documents:', error);
       res.status(500).send('Failed to insert data');
     });
+    console.log("postdata")
+
+    res.send("Data Inserted Successfully")
+}
+
+
+
+  
 });
 
 app.use("/routes", CRUD_routes);
