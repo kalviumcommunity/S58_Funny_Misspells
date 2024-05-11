@@ -2,6 +2,7 @@
 const express = require('express');
 const app = express();
 const dotenv = require('dotenv');
+const jwt = require('jsonwebtoken');
 dotenv.config();
 const port = process.env.PUBLIC_PORT || 3000;
 const { connection } = require('./config/db'); // Assuming `connection` is a promise
@@ -10,9 +11,32 @@ const { misspellsModel } = require('./model/Misspells');
 const mongoose = require('mongoose');
 const CRUD_routes = require('./Routes/routes');
 const cors = require('cors');
+const joi=require('joi');
+const { userModel } = require('./model/user.model');
 
 app.use(express.json());
 app.use(cors());
+
+const schema=joi.object({
+  email:joi.string().email().required(),
+  password:joi.string().min(3).max(10).required()
+})
+
+const validateUserInput=(Input)=>{
+
+  // console.log(email,password)
+  const {error,value}=schema.validate(Input);
+
+  if(error){
+      console.log({message:"Validation failed", error})
+      return false
+  }else{
+     console.log("Validation successfull")
+     return true
+  }
+}
+
+// app.use(validateUserInput)
 
 app.get("/", async (req, res) => {
   res.status(200).send(`<h1>Database Connected Successfully</h1><p>Status Code: 200</p>`);
@@ -21,6 +45,47 @@ app.get("/", async (req, res) => {
 app.get('/ping', (req, res) => {
   res.json({ message: 'pong' });
 });
+
+
+app.post("/signup",async (req,res)=>{
+    
+   let result=validateUserInput(req.body);
+
+   if(!result){
+    res.send("Invalid data in the request");
+    return;
+   }
+  
+  try{
+    const user = new userModel(req.body);
+    await user.save();
+    res.status(201).json({msg:"Validation & SignUp done Successfully",data:user.toJSON()})
+  }catch(e){
+    console.log(e)
+    res.status(400).json({message:'Sign Up Failed', error: e})    
+  }
+  })
+
+  // app.post("/login",(req,res)=>{
+  //   const {username,password}=req.body;
+
+  //   let user=userModel.findOne({username})
+
+  //   if(user){
+      
+  //       const payload = { userId: user.id };
+  //       const secretKey = 'AiMeN';
+
+  //       const token = jwt.sign(payload, secretKey);
+
+  //     res.send({"msg":"Logged In Successfully",token:token})
+  //   }else{
+  //     res.send({"msg":"Please Sign-Up First"})
+  //   }
+  
+  // })
+
+
 
 app.post('/postdata', (req, res) => {
   misspellsModel.insertMany(misspellsData)

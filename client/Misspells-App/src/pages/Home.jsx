@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Form, useNavigate } from 'react-router-dom';
 import MispellComponent from '../components/MispellComponent';
+import RegistrationForm from './RegistrationForm';
 
 const Home = () => {
 
@@ -35,6 +36,11 @@ const Home = () => {
   const redirectToForm3 = () => {
     navigate ("/Form3")
   }
+
+  const handelRegistration= () => {
+    navigate ("/RegistrationForm")
+  }
+  
   
   
     if (form === true){
@@ -46,6 +52,8 @@ const Home = () => {
         <button className="submit-btn" onClick={redirectToForm}>Give your own submission</button> {/* Use a button to navigate to the form route */}
       <button onClick={redirectToForm2}>Update ane Entity</button> 
       <button onClick={redirectToForm3}>Delete an Entity</button> 
+      <button onClick={handelRegistration}>Regsiter</button>
+
       <ul>
         {data?.map((item, index) => (
           <li key={index}>
