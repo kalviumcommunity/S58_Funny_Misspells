@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './RegistrationForm.css'; // Import the CSS file
 
 function RegistrationForm() {
   const [email, setEmail] = useState('');
@@ -17,47 +18,47 @@ function RegistrationForm() {
     // Here you can perform any further actions like submitting the data to a server
     // console.log('Email:', email);
     // console.log('Password:', password);
-    fetch('http://localhost:1330/signup',{
-        method:"POST",
-        body:JSON.stringify({email,password}),
-        headers:{"Content-Type":"application/json"}
-    }).then((res)=>{
-        return res.json();
-    }).then((res)=>{
-        console.log(res);
-    }).catch((e)=>{
-        console.log(e)
-    })
+    fetch('http://localhost:1330/signup', {
+      method: "POST",
+      body: JSON.stringify({ email, password }),
+      headers: { "Content-Type": "application/json" }
+    }).then((res) => {
+      return res.json();
+    }).then((res) => {
+      console.log(res);
+    }).catch((e) => {
+      console.log(e)
+    });
     // Reset the form after submission
     setEmail('');
     setPassword('');
   };
 
   return (
-    <div>
-      <h2>Registration Form</h2>
+    <div className="registration-form-container">
+      <h2 className="registration-form-title">Registration Form</h2>
       <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="email">Email:</label>
+        <div className="registration-form-group">
+          <label className="registration-form-label" htmlFor="email">Email:</label>
           <input
+            className="registration-form-input"
             type="email"
             id="email"
-          
             onChange={handleEmailChange}
             required
           />
         </div>
-        <div>
-          <label htmlFor="password">Password:</label>
+        <div className="registration-form-group">
+          <label className="registration-form-label" htmlFor="password">Password:</label>
           <input
+            className="registration-form-input"
             type="password"
             id="password"
-
             onChange={handlePasswordChange}
             required
           />
         </div>
-        <button type="submit">Register</button>
+        <button className="registration-form-submit" type="submit">Register</button>
       </form>
     </div>
   );

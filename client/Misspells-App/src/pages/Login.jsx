@@ -1,66 +1,56 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import './Login.css'; // Import the CSS file
 
-const Login = () => {
+function Login() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-  const [email,setEmail]=useState('');
-  const [password,setPassword]=useState('');
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value);
+  };
 
-  const handleEmailChange=(e)=>{
-    setEmail(e.target.value);
-  }
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
+  };
 
-  const handlePasswordChange=(e)=>{
-    setPassword(e.target.value);
-  }
-
-  const handleSubmit=(e)=>{
-    e.preventDefault();
-    // document.cookie=`username=${email}`;
-    // console.log(document.cookie)
-    fetch('http://localhost:1330/login',{
-      method:"POST",
-      body:JSON.stringify({email,password}),
-      headers:{"Content-Type":"application/json"}
-    }).then((res)=>{
-      return res.json();
-    }).then((res)=>{
-      console.log(res.token);
-      let Token=res.token;
-      document.cookie=`Token=${Token}`
-    }).catch((err)=>{
-      console.log(err);
-    })
-    
-  }
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // Here you can perform any further actions like submitting the data to a server
+    // For now, let's assume successful login
+    // Display an alert
+    alert('Logged in successfully');
+    // Redirect to the home page
+    window.location.href = '/'; // Redirect to the home page
+  };
 
   return (
-    <>
-     <h2> LOGIN FORM</h2>
+    <div className="login-form-container">
+      <h2 className="login-form-title">Login Form</h2>
       <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="email">Email:</label>
+        <div className="login-form-group">
+          <label className="login-form-label" htmlFor="email">Email:</label>
           <input
+            className="login-form-input"
             type="email"
             id="email"
             onChange={handleEmailChange}
             required
           />
         </div>
-        <div>
-          <label htmlFor="password">Password:</label>
+        <div className="login-form-group">
+          <label className="login-form-label" htmlFor="password">Password:</label>
           <input
+            className="login-form-input"
             type="password"
             id="password"
-
             onChange={handlePasswordChange}
             required
           />
         </div>
-        <button type="submit">Login</button>
+        <button className="login-form-submit" type="submit">Login</button>
       </form>
-    
-    </>
-  )
+    </div>
+  );
 }
 
-export default Login
+export default Login;

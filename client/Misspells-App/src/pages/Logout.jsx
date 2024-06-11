@@ -9,7 +9,8 @@ const Logout = () => {
     })
 
   return (
-    <div>Logout</div>
+    
+    <div>You have been successfully logged out</div>
   )
 }
 
