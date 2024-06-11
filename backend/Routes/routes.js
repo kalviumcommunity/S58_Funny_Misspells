@@ -16,6 +16,18 @@ CRUD_routes.get('/',async(req,res)=>{
 })
 
 
+CRUD_routes.get('/created_by',async(req,res)=>{
+    console.log("req",req)
+    try{
+        const misspells=await misspellsModel.find({created_by: req.query.created_by})
+        console.log(misspells)
+        res.json(misspells)
+    }catch(err){
+        console.log(err)
+        res.send({'Error':err})
+    }
+})
+
 
 
 CRUD_routes.post('/Create',async(req,res)=>{

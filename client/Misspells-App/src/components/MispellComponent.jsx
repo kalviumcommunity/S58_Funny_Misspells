@@ -1,10 +1,14 @@
-export default function MispellComponent(props){
+import React from 'react';
 
-    let item=props.item;
-    
-    return (<>
-            <div>No. {item.ID}</div>
-            <img src={item.URL} alt={item.alt} />
+export default function MispellComponent(props) {
+    let item = props.item;
+    console.log("Item in MispellComponent:", item);
+
+    return (
+        <div className="mispell-component">
+     
+            <img src={item.URL} alt={item.AltID} />
             <div className="caption">{item.Caption}</div>
-    </>)
+        </div>
+    );
 }

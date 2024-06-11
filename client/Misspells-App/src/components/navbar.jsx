@@ -1,10 +1,10 @@
 import React from 'react';
-import './App.css';
+import './navbar.css'; // Import the CSS file for navbar styling
 
 const Navbar = () => {
   return (
     <nav className="navbar">
-      <h1>Funny Misspells</h1>
+      <h1 className="navbar-title">Funny Misspells</h1>
     </nav>
   );
 };
