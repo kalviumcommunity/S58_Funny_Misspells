@@ -1,55 +1,68 @@
 import React, { useState } from 'react';
-import './Login.css'; // Import the CSS file
 
-function Login() {
+const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleEmailChange = (event) => {
-    setEmail(event.target.value);
-  };
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  }
 
-  const handlePasswordChange = (event) => {
-    setPassword(event.target.value);
-  };
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+  }
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Here you can perform any further actions like submitting the data to a server
-    // For now, let's assume successful login
-    // Display an alert
-    alert('Logged in successfully');
-    // Redirect to the home page
-    window.location.href = '/'; // Redirect to the home page
-  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    fetch('http://localhost:1330/login', {
+      method: "POST",
+      body: JSON.stringify({ email, password }),
+      headers: { "Content-Type": "application/json" }
+    }).then((res) => {
+      return res.json();
+    }).then((res) => {
+      console.log(res.token); // Assuming your backend responds with a token
+      // Handle response as needed, e.g., store user email in a cookie
+      document.cookie = `userEmail=${email}; path=/`;
+      // Optionally redirect to another page or update state to reflect successful login
+    }).catch((err) => {
+      console.log(err);
+      // Handle error, e.g., show error message to the user
+    });
+    
+    // Clear the form fields after submission (optional)
+    setEmail('');
+    setPassword('');
+  }
 
   return (
-    <div className="login-form-container">
-      <h2 className="login-form-title">Login Form</h2>
+    <>
+      <h2>LOGIN FORM</h2>
       <form onSubmit={handleSubmit}>
-        <div className="login-form-group">
-          <label className="login-form-label" htmlFor="email">Email:</label>
+        <div>
+          <label htmlFor="email">Email:</label>
           <input
-            className="login-form-input"
             type="email"
             id="email"
+            value={email} // Bind the value to the state
             onChange={handleEmailChange}
             required
           />
         </div>
-        <div className="login-form-group">
-          <label className="login-form-label" htmlFor="password">Password:</label>
+        <div>
+          <label htmlFor="password">Password:</label>
           <input
-            className="login-form-input"
             type="password"
             id="password"
+            value={password} // Bind the value to the state
             onChange={handlePasswordChange}
             required
           />
         </div>
-        <button className="login-form-submit" type="submit">Login</button>
+        <button type="submit">Login</button>
       </form>
-    </div>
+    </>
   );
 }
 

@@ -1,17 +1,20 @@
-import React, { useEffect } from 'react'
+import React, { useEffect } from 'react';
 
 const Logout = () => {
-
-    useEffect(()=>{
-        let cookie=document.cookie;
-        console.log(cookie)
-        document.cookie = "Token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-    })
+  useEffect(() => {
+    // Clear stored user data, such as cookies or localStorage
+    document.cookie = "Token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    // Optionally perform any additional logout actions (e.g., redirect)
+  }, []);
 
   return (
-    
-    <div>You have been successfully logged out</div>
-  )
+    <div>
+      <h2>Logout</h2>
+      <p>You have been logged out.</p>
+      {/* Optionally add a link to redirect users after logout */}
+      {/* <a href="/">Go to Home</a> */}
+    </div>
+  );
 }
 
-export default Logout
+export default Logout;
